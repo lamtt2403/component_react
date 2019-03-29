@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -24,6 +24,10 @@ export default class App extends Component {
    */
   constructor(props){
     super(props)
+    console.log("constructor called")
+    this.state = {
+      num: 0
+    }
     
   }
 
@@ -31,7 +35,7 @@ export default class App extends Component {
    * Thực hiện một số tác vụ, hàm này chỉ thực hiện một lần duy nhất
    */
   componentWillMount(){
-    
+    console.log("componentWillMount called")
   }
 
   /**
@@ -42,7 +46,7 @@ export default class App extends Component {
    * từ đó các thao tác trên DOM sẽ thực hiện bình thường với component này 
    */
   componentDidMount(){
-
+    console.log("componentDidMount called")
   }
 
 
@@ -51,7 +55,7 @@ export default class App extends Component {
    * Hàm này hữu dụng khi xóa các timer k còn được sử dụng
    */
   componentWillUnmount(){
-
+    console.log("componentWillUnmount called")
   }
 
   
@@ -80,7 +84,7 @@ export default class App extends Component {
    * @param {*} nextProps 
    */
   componentWillReceiveProps(nextProps){
-
+    console.log("componentWillReceiveProps called")
   }
 
 
@@ -92,7 +96,7 @@ export default class App extends Component {
    * @param {*} nextState 
    */
   shouldComponentUpdate(nextProps, nextState){
-
+    console.log("shouldComponentUpdate called")
   } 
 
   /**
@@ -103,22 +107,35 @@ export default class App extends Component {
    * @param {*} nextState 
    */
   componentWillUpdate(nextProps, nextState){
-
+    console.log("componentWillUpdate called")
   }
 
   /**
    * Hàm này thực hiện sau khi component được render lại, từ kết quả của componentWillUpdate
    */
   componentDidUpdate(prevProps, prevState){
+    console.log("componentDidUpdate called")
 
   }
 
+  onClick = () => {
+    console.log("Hi Lamtt")
+    // alert('Hi Lamtt')
+    this.setState({
+      ...this.state,
+      num: this.state.num + 1
+    }, () => {
+      console.log(`num callback : ${this.state.num}`)
+    })
+    console.log(`num NOT callback : ${this.state.num}`)
+  }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <Button title="Hi Lam" onPress={this.onClick} />
       </View>
     );
   }
