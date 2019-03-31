@@ -37,6 +37,7 @@ export default class Splash extends Component {
       })
     ]).start(() => {
       //End of animation
+      this.props.navigation.replace('Login')
     });
   }
   render() {

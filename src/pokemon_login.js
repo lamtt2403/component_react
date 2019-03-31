@@ -20,11 +20,10 @@ import {
   COLOR_FACEBOOK,
   COLOR_BACKGROUND_TEXT_INPUT
 } from "./myColor";
-import { from } from "rxjs";
 
 const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
 
-export default class pokemon_login extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
     bg = require("./image/bg.jpg");
@@ -74,7 +73,9 @@ export default class pokemon_login extends Component {
                 />
               </View>
               {/* Add login button */}
-              <TouchableOpacity style={styles.loginButton}>
+              <TouchableOpacity style={styles.loginButton} onPress={
+                () => this.props.navigation.navigate('FrameLayout')
+              }>
                 <Text style={styles.loginButtonTitle}>Login</Text>
               </TouchableOpacity>
               <Divider style={styles.divider} />
